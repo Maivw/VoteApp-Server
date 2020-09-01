@@ -12,7 +12,7 @@ const payRouter = require("./routes/pay");
 
 const { environment } = require("./config");
 paypal.configure({
-	mode: "sandbox", //sandbox or live
+	mode: "sandbox",
 	client_id:
 		"ARXVgrBFuxV3XDZBCkwgNLTGJfFbxZfP_h_aDTi3TFcCFSi6HpcxgVlDb_nNsOYe_bBSHWjfKs0vE8Os",
 	client_secret:

@@ -1,33 +1,45 @@
 "use strict";
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.createTable("Users", {
+		return queryInterface.createTable("Payments", {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
-			username: {
+
+			payerId: {
 				allowNull: false,
 				type: Sequelize.STRING,
 				unique: true,
 			},
-			email: {
+			userId: {
 				allowNull: false,
+				type: Sequelize.INTEGER,
+				unique: true,
+				references: {
+					model: "Users",
+					key: "id",
+				},
+			},
+			emailAddress: {
 				type: Sequelize.STRING,
 				unique: true,
+				allowNull: false,
 			},
-			password: {
+			amount: {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},
-
-			party: {
+			currentcyCode: {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},
-
+			payerName: {
+				allowNull: false,
+				type: Sequelize.STRING,
+			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
@@ -39,6 +51,6 @@ module.exports = {
 		});
 	},
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.dropTable("Users");
+		return queryInterface.dropTable("Payments");
 	},
 };

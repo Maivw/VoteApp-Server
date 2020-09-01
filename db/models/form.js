@@ -3,12 +3,12 @@ module.exports = (sequelize, DataTypes) => {
 	const Form = sequelize.define(
 		"Form",
 		{
-			userId: DataTypes.INTEGER,
-			officeTitle: DataTypes.STRING,
-			candidatename: DataTypes.STRING,
-			disctrict: DataTypes.STRING,
-			address: DataTypes.STRING,
-			occupation: DataTypes.STRING,
+			userId: { type: DataTypes.INTEGER, allowNull: false },
+			officeTitle: { type: DataTypes.STRING, allowNull: false },
+			candidatename: { type: DataTypes.STRING, allowNull: false },
+			disctrict: { type: DataTypes.STRING, allowNull: false },
+			address: { type: DataTypes.STRING, allowNull: false },
+			occupation: { type: DataTypes.STRING, allowNull: false },
 		},
 		{}
 	);
