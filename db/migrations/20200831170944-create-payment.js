@@ -12,21 +12,18 @@ module.exports = {
 			payerId: {
 				allowNull: false,
 				type: Sequelize.STRING,
-				unique: true,
 			},
 			userId: {
 				allowNull: false,
 				type: Sequelize.INTEGER,
-				unique: true,
 				references: {
 					model: "Users",
 					key: "id",
 				},
 			},
 			emailAddress: {
-				type: Sequelize.STRING,
-				unique: true,
 				allowNull: false,
+				type: Sequelize.STRING,
 			},
 			amount: {
 				allowNull: false,

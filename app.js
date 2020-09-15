@@ -4,6 +4,11 @@ const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
 const paypal = require("paypal-rest-sdk");
+const { authConfig, checkJwt } = require("./authO");
+const jwt = require("express-jwt");
+const jwtAuthz = require("express-jwt-authz");
+const jwksRsa = require("jwks-rsa");
+
 const { ValidationError } = require("sequelize");
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
@@ -30,6 +35,7 @@ app.use("/", indexRouter);
 app.use("/users", userRouter);
 app.use("/form", formRouter);
 app.use("/payment", payRouter);
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {

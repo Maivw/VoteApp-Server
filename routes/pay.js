@@ -1,35 +1,43 @@
 const express = require("express");
 const paypal = require("paypal-rest-sdk");
 const { asyncHandler } = require("../utils");
-const { requireAuth } = require("../auth");
+const { check } = require("express-validator");
+const checkJwt = require("../authO").checkJwt;
 const _ = require("lodash");
 
 const router = express.Router();
 const db = require("../db/models");
 const { User, Payment } = db;
 
+// payerId: DataTypes.STRING,
+// userId: DataTypes.INTEGER,
+// emailAddress: DataTypes.STRING,
+// amount: DataTypes.STRING,
+// currentcyCode: DataTypes.STRING,
+// payerName: DataTypes.STRING,
+
 router.post(
 	"/",
-	requireAuth,
 	asyncHandler(async (req, res, next) => {
-		const { amount } = req.body;
-		const userId = req.user.id;
-		const like = await Like.findOne({
-			where: {
-				userId: userId,
-				postId: id,
-			},
+		const {
+			payerId,
+			userId,
+			emailAddress,
+			amount,
+			currentcyCode,
+			payerName,
+		} = req.body;
+		// const userId = req.user.id;
+		const payment = await Payment.create({
+			payerId,
+			userId,
+			emailAddress,
+			amount,
+			currentcyCode,
+			payerName,
 		});
-		if (like) {
-			await like.destroy();
-			res.status(201).json({ like, message: "unlike successfully" });
-		} else {
-			const like = await Like.create({
-				userId: userId,
-				postId: id,
-			});
-			res.status(201).json({ like });
-		}
+
+		res.status(201).json({ payment });
 	})
 );
 

@@ -18,13 +18,7 @@ module.exports = {
 				type: Sequelize.STRING,
 				unique: true,
 			},
-			password: {
-				allowNull: false,
-				type: Sequelize.STRING,
-			},
-
-			party: {
-				allowNull: false,
+			picture: {
 				type: Sequelize.STRING,
 			},
 

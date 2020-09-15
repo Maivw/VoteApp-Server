@@ -1,7 +1,7 @@
 const express = require("express");
 const { asyncHandler } = require("../utils");
 const { check } = require("express-validator");
-const { requireAuth } = require("../auth");
+const checkJwt = require("../authO").checkJwt;
 const _ = require("lodash");
 
 const router = express.Router();
@@ -18,7 +18,6 @@ const formNotFoundError = (id) => {
 
 router.post(
 	"/",
-	requireAuth,
 	asyncHandler(async (req, res, next) => {
 		const {
 			officeTitle,
@@ -26,9 +25,10 @@ router.post(
 			disctrict,
 			address,
 			occupation,
+			userId,
 		} = req.body;
-		const userId = req.user.id;
-		console.log("llllll", officeTitle);
+		// const userId = req.user.id;
+		// console.log("llllll", userId);
 		const form = await Form.create({
 			userId,
 			officeTitle: officeTitle,
