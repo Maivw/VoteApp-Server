@@ -9,6 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 			amount: DataTypes.STRING,
 			currentcyCode: DataTypes.STRING,
 			payerName: DataTypes.STRING,
+			alreadyPaid: DataTypes.BOOLEAN,
 		},
 		{}
 	);

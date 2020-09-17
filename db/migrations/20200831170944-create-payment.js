@@ -37,6 +37,9 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},
+			alreadyPaid: {
+				type: Sequelize.BOOLEAN,
+			},
 			createdAt: {
 				allowNull: false,
 				type: Sequelize.DATE,

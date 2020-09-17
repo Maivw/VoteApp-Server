@@ -9,12 +9,21 @@ const router = express.Router();
 const db = require("../db/models");
 const { User, Payment } = db;
 
-// payerId: DataTypes.STRING,
-// userId: DataTypes.INTEGER,
-// emailAddress: DataTypes.STRING,
-// amount: DataTypes.STRING,
-// currentcyCode: DataTypes.STRING,
-// payerName: DataTypes.STRING,
+// const paymentNotFoundError = (userId) => {
+// 	const err = Error("Unauthorized");
+// 	err.errors = [`Payment with userId of ${userId} could not be found.`];
+// 	err.title = "You need to make a payment first";
+// 	err.status = 401;
+// 	return err;
+// };
+
+const userNotFound = (userId) => {
+	const err = new Error("User not found");
+	err.errors = [`User with id: ${userId} could not be found.`];
+	err.title = "User not found.";
+	err.status = 404;
+	return err;
+};
 
 router.post(
 	"/",
@@ -27,7 +36,6 @@ router.post(
 			currentcyCode,
 			payerName,
 		} = req.body;
-		// const userId = req.user.id;
 		const payment = await Payment.create({
 			payerId,
 			userId,
@@ -35,9 +43,40 @@ router.post(
 			amount,
 			currentcyCode,
 			payerName,
+			alreadyPaid: true,
 		});
 
-		res.status(201).json({ payment });
+		const user = await User.findOne({
+			where: {
+				id: userId,
+			},
+		});
+
+		if (user) {
+			await user.update({ alreadyPaid: true });
+		} else {
+			next(userNotFound(userId));
+		}
+		res.status(201).json({ payment, message: "Update successfully" });
+	})
+);
+
+router.get(
+	"/:payerId",
+	asyncHandler(async (req, res, next) => {
+		const payerId = req.params.payerId;
+		console.log("789899", payerId);
+		const payment = await Payment.findOne({
+			where: {
+				payerId: payerId,
+			},
+		});
+		if (payment) {
+			res.json({ payment });
+		} else {
+			// next(paymentNotFoundError(userId));
+			res.send("failed");
+		}
 	})
 );
 

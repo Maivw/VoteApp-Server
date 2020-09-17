@@ -21,6 +21,9 @@ module.exports = {
 			picture: {
 				type: Sequelize.STRING,
 			},
+			alreadyPaid: {
+				type: Sequelize.BOOLEAN,
+			},
 
 			createdAt: {
 				allowNull: false,

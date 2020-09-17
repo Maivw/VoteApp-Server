@@ -10,7 +10,7 @@ const {
 const { getUserToken, requireAuth } = require("../auth");
 const db = require("../db/models");
 
-const { User, Form } = db;
+const { User, Form, Payment } = db;
 const router = express.Router();
 const userNotFound = (userId) => {
 	const err = new Error("User not found");
@@ -40,6 +40,7 @@ router.patch(
 			where: {
 				email,
 			},
+			include: [Payment],
 		});
 
 		if (!user) {
