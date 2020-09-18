@@ -27,28 +27,35 @@ const userNotFound = (userId) => {
 
 router.post(
 	"/",
+	checkJwt,
+
 	asyncHandler(async (req, res, next) => {
+		console.log("oooooo");
 		const {
 			payerId,
 			userId,
-			emailAddress,
+			paymentEmail,
 			amount,
 			currentcyCode,
 			payerName,
+			userEmail,
 		} = req.body;
 		const payment = await Payment.create({
 			payerId,
 			userId,
-			emailAddress,
+			emailAddress: paymentEmail,
 			amount,
 			currentcyCode,
 			payerName,
 			alreadyPaid: true,
 		});
 
+		console.log("gggg");
+
 		const user = await User.findOne({
 			where: {
 				id: userId,
+				email: userEmail,
 			},
 		});
 
