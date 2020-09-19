@@ -20,11 +20,11 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},
-			candidatename: {
+			candidateName: {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},
-			disctrict: {
+			district: {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},

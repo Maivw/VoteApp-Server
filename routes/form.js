@@ -18,22 +18,21 @@ const formNotFoundError = (id) => {
 
 router.post(
 	"/",
+	checkJwt,
 	asyncHandler(async (req, res, next) => {
 		const {
 			officeTitle,
-			candidatename,
-			disctrict,
+			candidateName,
+			district,
 			address,
 			occupation,
 			userId,
 		} = req.body;
-		// const userId = req.user.id;
-		// console.log("llllll", userId);
 		const form = await Form.create({
 			userId,
 			officeTitle: officeTitle,
-			candidatename,
-			disctrict,
+			candidateName,
+			district,
 			address,
 			occupation,
 		});
