@@ -3,7 +3,6 @@
 create user vote_app with password 'password' createdb;
 
 create database vote_app_db with owner vote_app;
-\q
 
 
 tao database

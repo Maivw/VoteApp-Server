@@ -51,6 +51,7 @@ router.patch(
 					username: user.nickname,
 					email: user.email,
 					picture: user.picture,
+					alreadyPaid: false
 				},
 			});
 		} else {
@@ -60,6 +61,7 @@ router.patch(
 					nickname: user.nickname,
 					email: user.email,
 					picture: user.picture,
+					alreadyPaid: user.alreadyPaid
 				},
 			});
 		}
