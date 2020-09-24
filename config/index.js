@@ -11,4 +11,8 @@ module.exports = {
 		secret: process.env.JWT_SECRET,
 		expiresIn: process.env.JWT_EXPIRES_IN,
 	},
+	paypal: {
+		client_id: process.env.PAYPAL_CLIENT_ID,
+		client_secret: process.env.PAYPAL_CLIENT_SECRET,
+	},
 };

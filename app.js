@@ -14,14 +14,22 @@ const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
 const formRouter = require("./routes/form");
 const payRouter = require("./routes/pay");
+const config = require("./config/index");
+const PAYPAL = config.paypal;
 
 const { environment } = require("./config");
+// paypal.configure({
+// 	mode: "sandbox",
+// 	client_id:
+// 		"ARXVgrBFuxV3XDZBCkwgNLTGJfFbxZfP_h_aDTi3TFcCFSi6HpcxgVlDb_nNsOYe_bBSHWjfKs0vE8Os",
+// 	client_secret:
+// 		"EFNidEXGr2P5ienW9n-yRzxkYoCZANeIGHtP8tcZNOqRXipM87PdZ9hfTIqhcTBR_W1rY7rUCIar4WWW",
+// });
+
 paypal.configure({
 	mode: "sandbox",
-	client_id:
-		"ARXVgrBFuxV3XDZBCkwgNLTGJfFbxZfP_h_aDTi3TFcCFSi6HpcxgVlDb_nNsOYe_bBSHWjfKs0vE8Os",
-	client_secret:
-		"EFNidEXGr2P5ienW9n-yRzxkYoCZANeIGHtP8tcZNOqRXipM87PdZ9hfTIqhcTBR_W1rY7rUCIar4WWW",
+	client_id: PAYPAL.client_id,
+	client_secret: PAYPAL.client_secret,
 });
 
 const app = express();
