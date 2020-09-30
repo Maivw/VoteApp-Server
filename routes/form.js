@@ -52,19 +52,3 @@ router.get(
 	})
 );
 module.exports = router;
-
-// check("candidatename")
-// 		.exists({ checkFalsy: true })
-// 		.withMessage("Please provide a username"),
-// 	check("officeTitle")
-// 		.exists({ checkFalsy: true })
-// 		.withMessage("Please provide the office Title"),
-// 	check("disctrict")
-// 		.exists({ checkFalsy: true })
-// 		.withMessage("Please provide disctrict"),
-// 	check("address")
-// 		.exists({ checkFalsy: true })
-// 		.withMessage("Please provide a value for address"),
-// 	check("occupation")
-// 		.exists({ checkFalsy: true })
-// 		.withMessage("Please provide a value for occupation"),

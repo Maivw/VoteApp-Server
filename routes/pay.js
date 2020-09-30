@@ -30,7 +30,6 @@ router.post(
 	checkJwt,
 
 	asyncHandler(async (req, res, next) => {
-		console.log("oooooo");
 		const {
 			payerId,
 			userId,
@@ -49,8 +48,6 @@ router.post(
 			payerName,
 			alreadyPaid: true,
 		});
-
-		console.log("gggg");
 
 		const user = await User.findOne({
 			where: {
@@ -72,7 +69,6 @@ router.get(
 	"/:payerId",
 	asyncHandler(async (req, res, next) => {
 		const payerId = req.params.payerId;
-		console.log("789899", payerId);
 		const payment = await Payment.findOne({
 			where: {
 				payerId: payerId,
@@ -81,7 +77,6 @@ router.get(
 		if (payment) {
 			res.json({ payment });
 		} else {
-			// next(paymentNotFoundError(userId));
 			res.send("failed");
 		}
 	})
