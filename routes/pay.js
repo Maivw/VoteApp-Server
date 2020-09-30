@@ -9,14 +9,6 @@ const router = express.Router();
 const db = require("../db/models");
 const { User, Payment } = db;
 
-// const paymentNotFoundError = (userId) => {
-// 	const err = Error("Unauthorized");
-// 	err.errors = [`Payment with userId of ${userId} could not be found.`];
-// 	err.title = "You need to make a payment first";
-// 	err.status = 401;
-// 	return err;
-// };
-
 const userNotFound = (userId) => {
 	const err = new Error("User not found");
 	err.errors = [`User with id: ${userId} could not be found.`];
@@ -28,7 +20,6 @@ const userNotFound = (userId) => {
 router.post(
 	"/",
 	checkJwt,
-
 	asyncHandler(async (req, res, next) => {
 		const {
 			payerId,
