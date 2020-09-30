@@ -20,9 +20,6 @@ const handleValidationErrors = (req, res, next) => {
 };
 
 function validatePassword(password, hashedPassword) {
-	console.log("pass12345", password);
-	console.log("has2121", hashedPassword);
-	console.log("check", bcrypt.compareSync(password, hashedPassword.toString()));
 	return bcrypt.compareSync(password, hashedPassword.toString());
 }
 

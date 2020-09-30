@@ -6,8 +6,6 @@ const authConfig = {
 	audience: "https://voteApp/api",
 };
 
-// Define middleware that validates incoming bearer tokens
-// using JWKS from YOUR_DOMAIN
 const checkJwt = jwt({
 	secret: jwksRsa.expressJwtSecret({
 		cache: true,
