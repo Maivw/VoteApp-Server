@@ -12,7 +12,6 @@ const getUserToken = (user) => {
 		email: user.email,
 	};
 
-	// Create the token.
 	const token = jwt.sign({ data: userDataForToken }, secret, {
 		expiresIn: parseInt(expiresIn, 10),
 	});
